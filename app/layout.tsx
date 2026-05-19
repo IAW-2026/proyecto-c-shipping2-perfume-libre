@@ -16,8 +16,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header className="header">
-          <span className="headerTitle">header</span>
-          <span className="userName">testname</span>
+          <span className="headerTitle">PerfumeLibre</span>
+          <span className="userName">NombreDeUsuario</span>
         </header>
         {children}
       </body>
