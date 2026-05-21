@@ -1,6 +1,6 @@
 .root {
   display: flex;
-  height: 100vh;
+  min-height: 100%;
 }
 
 .sidebar {
@@ -36,7 +36,7 @@
 }
 
 .listItem:hover {
-  background-color: #ececec;
+  background-color: #f8bfbd;
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
@@ -73,4 +73,12 @@
 
 .label {
   font-weight: 700;
+}
+
+.filter {
+  font-weight: 700;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 8px;
 }

@@ -1,5 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import Sidebar from './components/Sidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +20,10 @@ export default function RootLayout({
           <span className="headerTitle">PerfumeLibre</span>
           <span className="userName">NombreDeUsuario</span>
         </header>
-        {children}
+        <div className="appShell">
+          <Sidebar />
+          <main className="mainContent">{children}</main>
+        </div>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import styles from "./EnviosViewer.module.css";
 
 export interface Envio {
@@ -8,7 +8,7 @@ export interface Envio {
   id_orden: string;
   id_comprador: string;
   id_vendedor: string;
-  estado_actual?: string | null;
+  estado_actual: string;
   fecha_entrega?: string | null;
   direccion_entrega: string;
   operador: string;
@@ -22,18 +22,55 @@ type EnviosViewerProps = {
   envios: Envio[];
 };
 
+const ESTADOS = [
+  "TODOS",
+  "CREADO",
+  "PREPARANDO",
+  "RETIRADO",
+  "EN_TRANSITO",
+  "ENTREGADO",
+  "NO_ENTREGADO",
+  "CANCELADO",
+];
+
 export default function EnviosViewer({ envios }: EnviosViewerProps) {
-  const sortedEnvios = [...envios].sort((a, b) =>
+ const [selected, setSelected] = useState(0);
+
+ const [estadoFiltro, setEstadoFiltro] =
+    useState("TODOS");
+
+  const filteredEnvios = useMemo(() => {
+    if (estadoFiltro === "TODOS") {
+      return envios;
+    }
+
+    return envios.filter(
+      (envio) => envio.estado_actual === estadoFiltro
+    );
+  }, [envios, estadoFiltro]);
+
+ const sortedEnvios = [...filteredEnvios].sort((a, b) =>
     b.trackingId.localeCompare(a.trackingId)
   );
 
-  const [selected, setSelected] = useState(0);
   const currentEnvio = sortedEnvios[selected];
 
   return (
     <div className={styles.root}>
       <div className={styles.sidebar}>
         <h2 className={styles.title}>Historial de envios:</h2>
+         <select
+          className={styles.filter}
+          value={estadoFiltro}
+          onChange={(e) => {
+            setEstadoFiltro(e.target.value);
+            setSelected(0);
+          }}
+        >{ESTADOS.map((estado) => (
+            <option key={estado} value={estado}>
+              {estado}
+            </option>
+          ))}</select>
        <div className={styles.list}>
   {sortedEnvios.map((envio, index) => (
     <button
@@ -49,7 +86,7 @@ export default function EnviosViewer({ envios }: EnviosViewerProps) {
 </div>
       </div>
       <div className={styles.details}>
-        <h2 className={styles.title}>Envío:</h2>
+        <h2 className={styles.title}>Envio:</h2>
         {currentEnvio ? (
           <div className={styles.card}>
             <div className={styles.row}>
@@ -84,12 +121,12 @@ export default function EnviosViewer({ envios }: EnviosViewerProps) {
                   ? new Date(currentEnvio.fecha_entrega).toLocaleString("es-AR", {
                       timeZone: "UTC",
                     })
-                  : "Pendiente"}
+                  : "PENDIENTE"}
               </span>
             </div>
 
             <div className={styles.row}>
-              <span className={styles.label}>Dirección:</span>
+              <span className={styles.label}>Direccion:</span>
               <span>{currentEnvio.direccion_entrega}</span>
             </div>
 
@@ -110,7 +147,7 @@ export default function EnviosViewer({ envios }: EnviosViewerProps) {
 
             <div className={styles.row}>
               <span className={styles.label}>Demora:</span>
-              <span>{currentEnvio.demora_dias} días</span>
+              <span>{currentEnvio.demora_dias} dias</span>
             </div>
           </div>
         ) : (
