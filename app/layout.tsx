@@ -21,7 +21,6 @@ export default function RootLayout({
           <span className="userName">NombreDeUsuario</span>
         </header>
         <div className="appShell">
-          <Sidebar />
           <main className="mainContent">{children}</main>
         </div>
       </body>

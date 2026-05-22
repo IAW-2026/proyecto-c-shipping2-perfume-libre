@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import styles from "./Sidebar.module.css";
 
 export default function Sidebar() {
@@ -18,12 +19,12 @@ export default function Sidebar() {
       <aside className={`${styles.sidebar} ${!isOpen ? styles.hidden : ""}`}>
         <div className={styles.sidebarBrand}>Panel</div>
         <nav className={styles.navList}>
-          <a className={styles.navLink + " " + styles.active} href="#">
-            Historial de Envios
-          </a>
-          <a className={styles.navLink} href="#">
-            Seguimiento de Envios
-          </a>
+          <Link
+            className={`${styles.navLink} ${styles.active}`}
+            href="/"
+          >
+          Historial de Envios
+          </Link>
         </nav>
       </aside>
     </>

@@ -8,3 +8,16 @@ export async function getEnvios() {
     fecha_entrega: row.fecha_entrega ? row.fecha_entrega.toISOString() : null,
   }));
 }
+export async function getEstadosEnvio(trackingId: string) {
+  const result = await db.query(
+    `
+    SELECT *
+    FROM "EstadoEnvio"
+    WHERE "trackingId" = $1
+    ORDER BY id ASC
+    `,
+    [trackingId]
+  );
+
+  return result.rows;
+}

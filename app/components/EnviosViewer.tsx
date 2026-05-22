@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import styles from "./EnviosViewer.module.css";
+import Link from "next/link";
 
 export interface Envio {
   trackingId: string;
@@ -73,16 +74,29 @@ export default function EnviosViewer({ envios }: EnviosViewerProps) {
           ))}</select>
        <div className={styles.list}>
   {sortedEnvios.map((envio, index) => (
+  <div
+    key={envio.trackingId}
+    className={styles.envioItem}
+  >
     <button
-      key={envio.trackingId}
       className={`${styles.listItem} ${
-        selected === index ? styles.activeItem : ""
+        selected === index
+          ? styles.activeItem
+          : ""
       }`}
       onClick={() => setSelected(index)}
     >
       {envio.trackingId}
     </button>
-  ))}
+
+    <Link
+      href={`/envios/${envio.trackingId}`}
+      className={styles.trackLink}
+    >
+      Ver seguimiento
+    </Link>
+  </div>
+))}
 </div>
       </div>
       <div className={styles.details}>
