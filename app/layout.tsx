@@ -1,6 +1,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
+import Sidebar from "./components/Sidebar";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
             </div>
         </header>
         <div className="appShell">
+          <Sidebar />
           <main className="mainContent">{children}</main>
         </div>
       </body>

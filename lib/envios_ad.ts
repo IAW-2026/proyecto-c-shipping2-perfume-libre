@@ -1,14 +1,12 @@
 import { db } from "./db";
 
-export async function getEnvios( usuarioId: string) {
+export async function getAllEnvios() {
    const result = await db.query(
     `
     SELECT *
     FROM "Envio"
-    WHERE "usuarioId" = $1
     ORDER BY "trackingId"
-    `,
-    [usuarioId]
+    `
   );
 
   return result.rows.map((row: { fecha_entrega: { toISOString: () => any; }; }) => ({

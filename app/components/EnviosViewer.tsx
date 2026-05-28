@@ -6,6 +6,8 @@ import Link from "next/link";
 
 export interface Envio {
   trackingId: string;
+  usuarioId: string;
+  showUsuarioId?: boolean;
   id_orden: string;
   id_comprador: string;
   id_vendedor: string;
@@ -16,11 +18,11 @@ export interface Envio {
   precio: number;
   tipo_servicio: string;
   demora_dias: number;
-  [key: string]: unknown;
+
 }
 
 type EnviosViewerProps = {
-  envios: Envio[];
+  envios: Envio[];  showUsuarioId?: boolean;
 };
 
 const ESTADOS = [
@@ -34,7 +36,7 @@ const ESTADOS = [
   "CANCELADO",
 ];
 
-export default function EnviosViewer({ envios }: EnviosViewerProps) {
+export default function EnviosViewer({ envios,  showUsuarioId = false }: EnviosViewerProps) {
  const [selected, setSelected] = useState(0);
 
  const [estadoFiltro, setEstadoFiltro] =
@@ -107,7 +109,15 @@ export default function EnviosViewer({ envios }: EnviosViewerProps) {
               <span className={styles.label}>Tracking ID:</span>
               <span>{currentEnvio.trackingId}</span>
             </div>
+            {showUsuarioId && (
+              <div className={styles.row}>
+                <span className={styles.label}>
+                  Usuario:
+                </span>
 
+                <span>{currentEnvio.usuarioId}</span>
+              </div>
+            )}
             <div className={styles.row}>
               <span className={styles.label}>ID Orden:</span>
               <span>{currentEnvio.id_orden}</span>

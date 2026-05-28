@@ -25,6 +25,12 @@ export default function Sidebar() {
           >
           Historial de Envios
           </Link>
+         <Link
+          className={styles.navLink}
+          href="/admin"
+        >
+          Panel Admin
+        </Link>
         </nav>
       </aside>
     </>

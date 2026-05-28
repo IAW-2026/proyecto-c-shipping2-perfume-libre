@@ -2,7 +2,10 @@ import EnviosViewer from "./components/EnviosViewer";
 import { getEnvios } from "../lib/envios";
 
 export default async function Home() {
-  const envios = await getEnvios();
+  const usuarioId = "300";
 
+const envios = await getEnvios(
+  usuarioId
+);
   return <EnviosViewer envios={envios} />;
 }
