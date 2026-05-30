@@ -1,7 +1,8 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
-import Sidebar from "./components/Sidebar";
+//import Sidebar from "./components/Sidebar";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,13 +20,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header className="header">
-          <span className="headerTitle">PerfumeLibre</span>
-          <div className="flex items-center gap-4">
-              <Show when="signed-out">
-                <SignInButton />
+          <Image src="/perfumeLogo.svg" alt="Perfume Logo" width={65} height={10} className="perfumeLogo" />
+          {/* <span className="headerTitle">Shipping</span> */}
+          <div className="headerActions">
+               <Show when="signed-out">
+                <SignInButton>
+                  <button className="authButton">
+                    Sign In
+                  </button>
+                </SignInButton>
 
                 <SignUpButton>
-                  <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 px-4 cursor-pointer">
+                  <button className="authButton">
                     Sign Up
                   </button>
                 </SignUpButton>
@@ -37,7 +43,7 @@ export default function RootLayout({
             </div>
         </header>
         <div className="appShell">
-          <Sidebar />
+          {/*<Sidebar />*/}
           <main className="mainContent">{children}</main>
         </div>
       </body>

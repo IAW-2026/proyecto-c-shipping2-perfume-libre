@@ -6,7 +6,7 @@
 .sidebar {
   flex: 1;
   padding: 2rem;
-  border-right: 1px solid #cecdcd;
+  border-right: 1px solid #f2efd7;
 }
 
 .title {
@@ -23,9 +23,9 @@
 .listItem {
   width: 100%;
   padding: 0.9rem 1rem;
-  border: 1px solid #ccc;
+  /*border: 1px solid #6b6b6b;*/
   border-radius: 0.8rem;
-  background: #f9f9f9;
+  background: #f2efd7;
   cursor: pointer;
   text-align: left;
   font-size: 1rem;
@@ -36,16 +36,16 @@
 }
 
 .listItem:hover {
-  background-color: #f8bfbd;
+  background-color: #dbdda6;
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .activeItem {
   background-color: #ffeeee;
-  border-color: #f8bfbd;
+  /*border-color: #f1f3ba;*/
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.25);
+  box-shadow: 0 4px 12px rgba(126, 151, 133, 0.5);
 }
 
 .details {
@@ -54,10 +54,10 @@
 }
 
 .card {
-  border: 1px solid #ccc;
+  border: 2px solid #5a5a5a;
   border-radius:0.8rem;
   padding: 1.5rem;
-  background-color: #f9f9f9;
+  background-color: #f2efd7;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
