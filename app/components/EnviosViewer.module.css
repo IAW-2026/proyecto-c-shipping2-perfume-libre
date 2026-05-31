@@ -23,7 +23,6 @@
 .listItem {
   width: 100%;
   padding: 0.9rem 1rem;
-  /*border: 1px solid #6b6b6b;*/
   border-radius: 0.8rem;
   background: #f2efd7;
   cursor: pointer;
@@ -43,7 +42,6 @@
 
 .activeItem {
   background-color: #ffeeee;
-  /*border-color: #f1f3ba;*/
   font-weight: 700;
   box-shadow: 0 4px 12px rgba(126, 151, 133, 0.5);
 }
@@ -60,6 +58,7 @@
   background-color: #f2efd7;
   display: flex;
   flex-direction: column;
+  width: min(600px, 90vw);
   gap: 0.8rem;
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
 
@@ -75,6 +74,12 @@
   font-weight: 700;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
 .filter {
   font-weight: 700;
   width: 100%;
@@ -82,3 +87,57 @@
   padding: 8px;
   border-radius: 8px;
 }
+
+.timeline {
+  padding: 20px;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 20px;
+}
+
+.timelineMarker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #5a5a5a;
+  flex-shrink: 0;
+}
+.lastCircle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #76c3bb;
+  flex-shrink: 0;
+}
+.adminTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+.line {
+  width: 3px;
+  height: 70px;
+  background: #5a5a5a;
+}
+
+.timelineContent {
+  padding-bottom: 40px;
+}
+
+.timelineContent h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.timelineContent p {
+  margin-top: 8px;
+}
+

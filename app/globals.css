@@ -16,10 +16,9 @@ body {
     ),
     url("/background.png");
 
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
+  background-size: 100%;
+  background-position: cover;
+  background-attachment: fixed;
 }
 
 .header {

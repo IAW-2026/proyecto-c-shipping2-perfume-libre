@@ -90,13 +90,6 @@ export default function EnviosViewer({ envios,  showUsuarioId = false }: EnviosV
     >
       {envio.trackingId}
     </button>
-
-    <Link
-      href={`/envios/${envio.trackingId}`}
-      className={styles.trackLink}
-    >
-      Ver seguimiento
-    </Link>
   </div>
 ))}
 </div>
@@ -173,6 +166,14 @@ export default function EnviosViewer({ envios,  showUsuarioId = false }: EnviosV
               <span className={styles.label}>Demora:</span>
               <span>{currentEnvio.demora_dias} dias</span>
             </div>
+        <div className={styles.actions}>
+          <Link
+      href={`/envios/${currentEnvio.trackingId}`}
+      className={styles.trackLink}
+    >
+      Ver seguimiento
+    </Link> </div> 
+
           </div>
         ) : (
           <p>No hay envios disponibles.</p>

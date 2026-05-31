@@ -16,32 +16,45 @@ type EstadosViewerProps = {
 export default function EstadosViewer({estados,}: EstadosViewerProps) {  
 return (
     <div className={styles.container}>
+    <div className={styles.card}>
       <h2 className={styles.title}>Seguimiento del envio</h2>
 
       {estados.length === 0 ? (
         <p>No hay estados registrados.</p>
       ) : (
         <div className={styles.timeline}>
-          {estados.map((estado) => (
+          {estados.map((estado,index) => (
             <div
               key={estado.id}
-              className={styles.item}
+              className={styles.timelineItem}
             >
-              <div className={styles.circle} />
+              <div className={styles.timelineMarker}>
+                <div className={`${styles.circle} ${
+                    index === estados.length - 1
+                      ? styles.lastCircle
+                      : styles.circle
+                  }`} />
 
-              <div className={styles.content}>
+                {index < estados.length - 1 && (
+                  <div className={styles.line} />
+                )}
+              </div>
+
+              <div className={styles.timelineContent}>
                 <h3>{estado.tipo_estado}</h3>
-
                 <p>
-                  {new Date(
-                    estado.fecha
-                  ).toLocaleString("es-AR")}
+                   {estado.fecha
+                    ? new Date(
+                        estado.fecha
+                      ).toLocaleString("es-AR")
+                    : "Sin fecha"}
                 </p>
               </div>
             </div>
           ))}
         </div>
       )}
+    </div>
     </div>
   );
 }
