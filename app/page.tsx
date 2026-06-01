@@ -20,10 +20,3 @@ const envios = await getEnvios(
 );
   return <EnviosViewer envios={envios} />;
 }
-//prueba+clerk_test@example.com
-//jh{-{-szvvcx{-vvc{x{z
-//codigo de verificacion: 424242
-
-//admin+clerk_test@example.com
-//jh{-{-szvvcx{-vvc{x{z2
-//codigo de verificacion: 424242

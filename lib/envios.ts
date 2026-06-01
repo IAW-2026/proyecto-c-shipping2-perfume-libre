@@ -5,8 +5,11 @@ export async function getEnvios( usuarioId: string) {
     `
     SELECT *
     FROM "Envio"
-    WHERE "usuarioId" = $1
-    ORDER BY "trackingId"
+    WHERE "usuarioId" = 'some_user_id'
+    ORDER BY CAST(
+      REPLACE("trackingId", 'TRK-', '')
+      AS INTEGER
+    ) DESC
     `,
     [usuarioId]
   );
