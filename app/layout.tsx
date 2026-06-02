@@ -1,13 +1,13 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
-//import Sidebar from "./components/Sidebar";
 import Image from "next/image";
-
+/*Layout principal de la pagina*/
+/*Incluyendo botones de clerk */
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Shipping Test',
+  title: 'Shipping'
 };
 
 export default function RootLayout({
@@ -21,7 +21,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <header className="header">
           <Image src="/perfumeLogo.svg" alt="Perfume Logo" width={65} height={10} className="perfumeLogo" />
-          {/* <span className="headerTitle">Shipping</span> */}
           <div className="headerActions">
                <Show when="signed-out">
                 <SignInButton>
@@ -43,7 +42,6 @@ export default function RootLayout({
             </div>
         </header>
         <div className="appShell">
-          {/*<Sidebar />*/}
           <main className="mainContent">{children}</main>
         </div>
       </body>

@@ -1,9 +1,11 @@
+/* Opciones de envio devueltas por cotizacion */
 export interface OpcionEnvio {
   operador: string;
   tipo_servicio: string;
   precio: number;
   demora_dias: number;
 }
+/*Base de datos Mockeada para opciones de envio*/
 const MOCKED_OPCIONES_ENVIO_DB: OpcionEnvio[] = [
   {
     operador: "Andreani",
@@ -24,7 +26,7 @@ const MOCKED_OPCIONES_ENVIO_DB: OpcionEnvio[] = [
     demora_dias: 3,
   },
 ];
-
+/* Funcion para cotizar opciones de envio */
 export async function cotizarEnvio(
   codigoPostal: string,
   direccionEntrega: string

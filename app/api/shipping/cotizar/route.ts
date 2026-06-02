@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cotizarEnvio } from "@/lib/ordenes";
-
+//Recibimos el codigo pstal y direccion de entrega
+//"devuelve" opciones de envio
 export async function POST(req: Request) {
 try {
  const body = await req.json();

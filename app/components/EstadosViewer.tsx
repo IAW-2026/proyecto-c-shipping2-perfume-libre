@@ -1,6 +1,6 @@
 "use client";
 import styles from "./EnviosViewer.module.css";
-
+/*Info de los estados de un envio*/
 export interface EstadoEnvio {
   id: number;
   trackingId: string;
@@ -12,6 +12,9 @@ export interface EstadoEnvio {
 type EstadosViewerProps = {
   estados: EstadoEnvio[];
 };
+//retorna todos los envios asociados
+//ordenados del mas antiguo al mas reciente
+//o sino dice que no hay estados registrados
 
 export default function EstadosViewer({estados,}: EstadosViewerProps) {  
 return (

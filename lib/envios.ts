@@ -1,11 +1,11 @@
 import { db } from "./db";
-
+/*envioss asociados a un usuario */
 export async function getEnvios( usuarioId: string) {
    const result = await db.query(
     `
     SELECT *
     FROM "Envio"
-    WHERE "usuarioId" = 'some_user_id'
+    WHERE "usuarioId" = $1
     ORDER BY CAST(
       REPLACE("trackingId", 'TRK-', '')
       AS INTEGER
@@ -19,6 +19,7 @@ export async function getEnvios( usuarioId: string) {
     fecha_entrega: row.fecha_entrega ? row.fecha_entrega.toISOString() : null,
   }));
 }
+/* historial de estados de un envio */
 export async function getEstadosEnvio(trackingId: string) {
   const result = await db.query(
     `

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import styles from "./EnviosViewer.module.css";
 import Link from "next/link";
-
+/*Info de un envio*/
 export interface Envio {
   trackingId: string;
   usuarioId: string;
@@ -18,13 +18,12 @@ export interface Envio {
   precio: number;
   tipo_servicio: string;
   demora_dias: number;
-
 }
 
 type EnviosViewerProps = {
   envios: Envio[];  showUsuarioId?: boolean;
 };
-
+//Estados para filtrar un envio
 const ESTADOS = [
   "TODOS",
   "CREADO",
@@ -37,8 +36,9 @@ const ESTADOS = [
 ];
 
 export default function EnviosViewer({ envios,  showUsuarioId = false }: EnviosViewerProps) {
+//Envio seleccionado
  const [selected, setSelected] = useState(0);
-
+//Filtrado de envios con usestate y memo para evitar recakculos
  const [estadoFiltro, setEstadoFiltro] =
     useState("TODOS");
 
@@ -51,11 +51,12 @@ export default function EnviosViewer({ envios,  showUsuarioId = false }: EnviosV
       (envio) => envio.estado_actual === estadoFiltro
     );
   }, [envios, estadoFiltro]);
-
+//Se ordena los envios por trackingId de forma descendinte 
+// para ir con lods mas recientes primero
  const sortedEnvios = [...filteredEnvios].sort((a, b) =>
     b.trackingId.localeCompare(a.trackingId)
   );
-
+//Se retorna el envio seleccionadp
   const currentEnvio = sortedEnvios[selected];
 
   return (

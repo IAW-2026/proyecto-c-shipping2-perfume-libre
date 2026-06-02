@@ -1,5 +1,5 @@
 import { db } from "./db";
-
+/*se dan todos los envios registrados en la db*/
 export async function getAllEnvios() {
    const result = await db.query(
     `
@@ -8,7 +8,7 @@ export async function getAllEnvios() {
     ORDER BY "trackingId"
     `
   );
-
+/* historial de estados de un envio */
   return result.rows.map((row: { fecha_entrega: { toISOString: () => any; }; }) => ({
     ...row,
     fecha_entrega: row.fecha_entrega ? row.fecha_entrega.toISOString() : null,

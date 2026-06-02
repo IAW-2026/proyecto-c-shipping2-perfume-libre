@@ -1,1 +1,0 @@
-export const ADMIN_ID = "user_3EPgf3RmvRg59xLYhLAaYvOunMq"

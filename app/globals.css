@@ -35,15 +35,16 @@ position: absolute;
   top: 50%;
   transform: translateY(-50%);
 
-  width: 25vw;      /* 20% del ancho de la ventana */
-  max-width: 300px; /* nunca más grande que 300px */
-  min-width: 80px;  /* nunca más chico que 80px */
+  width: 25vw;      
+  max-width: 300px; 
+  min-width: 80px;
   height: auto;
 }
 
 .headerTitle {
   display: inline-block;
 }
+
 @media (max-width: 768px) {
   .headerTitle {
     display: none;
