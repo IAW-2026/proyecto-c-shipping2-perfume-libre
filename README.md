@@ -17,6 +17,8 @@ contrseña: iawuser#
 Login de usuario (logistico)
 usuario: ship+clerk_test@iaw.com
 contrseña: iawuser#
+link de deploy:https://proyecto-c-shipping2-perfume-libre-juyh76myn-carlima-s-projects.vercel.app/
+
 
 Si se necesita un numero de confirmacion de email,usar 424242
 
