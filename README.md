@@ -20,5 +20,7 @@ contrseña: iawuser#
 link de deploy:https://proyecto-c-shipping2-perfume-libre-juyh76myn-carlima-s-projects.vercel.app/
 
 
+link de deploy:https://proyecto-c-shipping2-perfume-libre-juyh76myn-carlima-s-projects.vercel.app/
+
 Si se necesita un numero de confirmacion de email,usar 424242
 
