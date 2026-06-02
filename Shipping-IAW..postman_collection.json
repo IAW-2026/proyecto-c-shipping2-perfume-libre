@@ -1,0 +1,1019 @@
+{
+  "info": {
+    "_postman_id": "bb866f46-c501-49b1-a4dc-f9df6f0e4d48",
+    "name": "Shipping-IAW.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52479164",
+    "_collection_link": "https://go.postman.co/collection/52479164-bb866f46-c501-49b1-a4dc-f9df6f0e4d48?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "api/shipping/cotizar",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo_postal\": \"8000\",\n  \"direccion_entrega\": \"Calle Falsa 123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/api/shipping/cotizar",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "shipping",
+            "cotizar"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Default",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/shipping/cotizar",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "shipping",
+                "cotizar"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo_postal\": \"8000\",\n  \"direccion_entrega\": \"Calle Falsa 123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/shipping/cotizar/success",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "shipping",
+                "cotizar",
+                "success"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"opciones\": [\n        {\n            \"operador\": \"Andreani\",\n            \"tipo_servicio\": \"COMUN\",\n            \"precio\": 4500,\n            \"demora_dias\": 5\n        },\n        {\n            \"operador\": \"Correo Argentino\",\n            \"tipo_servicio\": \"COMUN\",\n            \"precio\": 7200,\n            \"demora_dias\": 2\n        },\n        {\n            \"operador\": \"OCA\",\n            \"tipo_servicio\": \"COMUN\",\n            \"precio\": 3900,\n            \"demora_dias\": 6\n        }\n    ]\n}"
+        },
+        {
+          "name": "missingBody",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo_postal\": \"8000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/shipping/cotizar/missingBody",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "shipping",
+                "cotizar",
+                "missingBody"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Falta ingresar mas datos\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "api/shipping/ordenes",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id_orden\": \"ORD-501\",\r\n    \"id_comprador\": \"100\",\r\n    \"id_vendedor\": \"200\",\r\n    \"direccion_entrega\": {\r\n        \"calle\": \"Torres 277\",\r\n        \"ciudad\": \"Bahía Blanca\",\r\n        \"codigo_postal\": \"8000\"\r\n    },\r\n    \"items\": [\r\n        {\r\n            \"producto\": \"Perfume ejemplo uno\",\r\n            \"cantidad\": 4\r\n        },\r\n        {\r\n            \"producto\": \"Colonia ejemplo uno\",\r\n            \"cantidad\": 1\r\n        }\r\n    ],\r\n    \"servicio_elegido\": {\r\n        \"operador\": \"Andreani\",\r\n        \"tipo_servicio\": \"EXPRESS\",\r\n        \"precio\": 64000,\r\n        \"demora_dias\": 0\r\n    }\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/api/shipping/ordenes",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "shipping",
+            "ordenes"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Default",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/shipping/ordenes",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "shipping",
+                "ordenes"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_orden\": \"ORD-501\",\r\n    \"id_comprador\": \"100\",\r\n    \"id_vendedor\": \"200\",\r\n    \"direccion_entrega\": {\r\n        \"calle\": \"Torres 277\",\r\n        \"ciudad\": \"Bahía Blanca\",\r\n        \"codigo_postal\": \"8000\"\r\n    },\r\n    \"items\": [\r\n        {\r\n            \"producto\": \"Perfume ejemplo uno\",\r\n            \"cantidad\": 4\r\n        },\r\n        {\r\n            \"producto\": \"Colonia ejemplo uno\",\r\n            \"cantidad\": 1\r\n        }\r\n    ],\r\n    \"servicio_elegido\": {\r\n        \"operador\": \"Andreani\",\r\n        \"tipo_servicio\": \"EXPRESS\",\r\n        \"precio\": 64000,\r\n        \"demora_dias\": 0\r\n    }\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/shipping/ordenes/success",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "shipping",
+                "ordenes",
+                "success"
+              ]
+            }
+          },
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"trackingId\": \"TRK-1001\"\n}"
+        },
+        {
+          "name": "invalidCreate",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_orden\": \"ORD-501\",\r\n    \"id_comprador\": \"100\",\r\n    \"id_vendedor\": \"200\",\r\n    \"direccion_entrega\": {\r\n        \"calle\": \"Torres 277\",\r\n        \"ciudad\": \"Bahía Blanca\",\r\n        \"codigo_postal\": \"8000\"\r\n    },\r\n    \"items\": [\r\n        {\r\n            \"producto\": \"Perfume ejemplo uno\",\r\n            \"cantidad\": 4\r\n        },\r\n        {\r\n            \"producto\": \"Colonia ejemplo uno\",\r\n            \"cantidad\": 1\r\n        }\r\n    ],\r\n    \"servicio_elegido\": {\r\n        \"operador\": \"Andreani\",\r\n        \"tipo_servicio\": \"EXPRESS\",\r\n        \"precio\": 64000,\r\n        \"demora_dias\": 0\r\n    }\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/shipping/ordenes/invalidCreate",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "shipping",
+                "ordenes",
+                "invalidCreate"
+              ]
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"La orden ya tiene un envio\"\n}"
+        },
+        {
+          "name": "invalidItems",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_orden\": \"ORD-501\",\r\n    \"id_comprador\": \"100\",\r\n    \"id_vendedor\": \"200\",\r\n    \"direccion_entrega\": {\r\n        \"calle\": \"Torres 277\",\r\n        \"ciudad\": \"Bahía Blanca\",\r\n        \"codigo_postal\": \"8000\"\r\n    },\r\n    \"items\": [],\r\n    \"servicio_elegido\": {\r\n        \"operador\": \"Andreani\",\r\n        \"tipo_servicio\": \"EXPRESS\",\r\n        \"precio\": 64000,\r\n        \"demora_dias\": 0\r\n    }\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/shipping/ordenes/invalidItems",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "shipping",
+                "ordenes",
+                "invalidItems"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"La orden no tiene items\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "api/seller/203/ordenes/ORD-504/preparar",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id_orden\": \"ORD-504\",\r\n  \"trackingId\": \"TRK-1004\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/api/seller/203/ordenes/ORD-504/preparar",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "seller",
+            "203",
+            "ordenes",
+            "ORD-504",
+            "preparar"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Default",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/seller/203/ordenes/ORD-504/preparar",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "203",
+                "ordenes",
+                "ORD-504",
+                "preparar"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id_orden\": \"ORD-504\",\r\n  \"trackingId\": \"TRK-1004\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/seller/203/ordenes/ORD-504/preparar/success",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "203",
+                "ordenes",
+                "ORD-504",
+                "preparar",
+                "success"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"estado\": \"EN_PREPARACION\"\n}"
+        },
+        {
+          "name": "invalidSeller",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id_orden\": \"ORD-504\",\r\n  \"trackingId\": \"TRK-1004\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/seller/202/ordenes/ORD-504/invalidSeller",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "202",
+                "ordenes",
+                "ORD-504",
+                "invalidSeller"
+              ]
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\r\n    \"error\": \"La orden no pertenece al vendedor\"\r\n}"
+        },
+        {
+          "name": "invalidState",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id_orden\": \"ORD-503\",\r\n  \"trackingId\": \"TRK-1003\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/seller/202/ordenes/ORD-503/preparar/invalidState",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "202",
+                "ordenes",
+                "ORD-503",
+                "preparar",
+                "invalidState"
+              ]
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"La orden ya esta en preparacion\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "api/seller/ordenes/ORD-503/retirado",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url}}/api/seller/ordenes/ORD-503/retirado",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "seller",
+            "ordenes",
+            "ORD-503",
+            "retirado"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Default",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/seller/ordenes/ORD-503/retirado",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "ordenes",
+                "ORD-503",
+                "retirado"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id_orden\": \"ORD-503\",\r\n  \"trackingId\": \"TRK-1003\",\r\n  \"fecha_retiro\": \"2026-05-26 21:10:00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/seller/ordenes/ORD-503/retirado/success",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "ordenes",
+                "ORD-503",
+                "retirado",
+                "success"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id_pedido\": \"PED-403\"\n}"
+        },
+        {
+          "name": "invalidState",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id_orden\": \"ORD-502\",\r\n  \"trackingId\": \"TRK-1002\",\r\n  \"fecha_retiro\": \"2026-05-17 11:12:20\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/seller/ordenes/ORD-503/retirado/invalidState",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "ordenes",
+                "ORD-503",
+                "retirado",
+                "invalidState"
+              ]
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"La orden ya fue retirada\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "api/notificaciones",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"trackingId\": \"NOTFOUND\",\r\n  \"fecha_entrega\": \"2026-05-15 19:05:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/api/notificaciones",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "notificaciones"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Default",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/notificaciones",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "notificaciones"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": null,
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "successEntregado",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"trackingId\": \"TRK-1001\",\r\n  \"fecha_entrega\": \"2026-05-15 19:05:00\",\r\n  \"estado\": \"ENTREGADO\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/notificaciones/entregado/success",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "notificaciones",
+                "entregado",
+                "success"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": null,
+          "cookie": [],
+          "body": null
+        },
+        {
+          "name": "successEnTransito",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"trackingId\": \"TRK-1001\",\r\n  \"fecha_transito\": \"2026-05-17 15:07:04\",\r\n  \"estado\": \"EN_TRANSITO\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/notificaciones/en_transito/success",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "notificaciones",
+                "en_transito",
+                "success"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": null,
+          "cookie": [],
+          "body": null
+        }
+      ]
+    },
+    {
+      "name": "api/shipping/TRK-1003",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url}}/api/shipping/TRK-1003",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "shipping",
+            "TRK-1003"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Default",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/shipping/TRK-1003",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "shipping",
+                "TRK-1003"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/shipping/TRK-1003/success",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "shipping",
+                "TRK-1003",
+                "success"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"estado\": \"retirado\"\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "url",
+      "value": "https://03d0a8df-b0c8-4711-8271-befe616d3de2.mock.pstmn.io"
+    }
+  ]
+}
