@@ -1,8 +1,9 @@
 import EnviosViewer from "./components/EnviosViewer";
+import CompraSim from "./components/CompraSim";
 import { getEnvios } from "../lib/envios";
 import { auth,currentUser} from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-
+import styles from "./page.module.css";
 
 export default async function Home() {
 /*obtener usuario logueado y confirmar su rol */
@@ -23,5 +24,11 @@ const role =
 //obtener envios del usuario
 const envios = await getEnvios(userId);
 //devolver vista de todos los envios del usuario
-  return <EnviosViewer envios={envios} />;
+  return (
+    <main className={styles.container}>
+      <EnviosViewer envios={envios} />
+          <CompraSim />
+
+    </main>
+  );
 }

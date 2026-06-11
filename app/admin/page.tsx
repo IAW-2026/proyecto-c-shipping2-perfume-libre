@@ -7,7 +7,7 @@ const envios = await getAllEnvios();
 //Mostramos todos los envios
 //incluyendo el id del usuario asociado
   return (
-     <main>
+     <main className={styles.adminContainer}>
       <h1 className={styles.adminTitle}>Panel de administracion</h1>
       <EnviosViewer envios={envios} 
         showUsuarioId={true}
