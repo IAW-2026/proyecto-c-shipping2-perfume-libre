@@ -6,13 +6,17 @@ export async function POST(
   {
     params,
   }: {
-    params: {
-      trackingId: string;
-    };
+    params: Promise<{
+      id_vendedor: string;
+      id_orden: string;
+    }>;
   }
 ) {
+  const { id_vendedor, id_orden } = await params;
+  const body = await req.json();
+  const { trackingId } = body;
+
   try {
-    const trackingId = params.trackingId;
 
     // Obtener datos del envIO
     const envioResult = await db.query(
@@ -118,7 +122,7 @@ export async function POST(
       SET "tipo_estado_preparacion" = $1
       WHERE "id_orden" = $2
       `,
-        "EN_PREPARACION",
+      ["EN_PREPARACION", id_orden]
     );
 
     return NextResponse.json({

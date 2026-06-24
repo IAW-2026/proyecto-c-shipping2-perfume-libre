@@ -6,13 +6,14 @@ export async function POST(
   {
     params,
   }: {
-    params: {
-      id_orden: string;
-    };
+    params: Promise<{
+      "id-orden": string;
+    }>;
   }
 ) {
+  const { "id-orden": id_orden } = await params;
+
   try {
-    const { id_orden } = params;
 
     // Buscar preparación asociada a la orden
     const preparacionResult = await db.query(
