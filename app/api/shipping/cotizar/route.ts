@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cotizarEnvio } from "@/lib/ordenes";
-//Recibimos el codigo pstal y direccion de entrega
+//Recibimos el codigo postal y direccion de entrega
 //"devuelve" opciones de envio
 export async function POST(req: Request) {
 try {

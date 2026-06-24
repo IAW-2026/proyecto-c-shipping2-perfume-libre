@@ -4,10 +4,9 @@ import { db } from "@/lib/db";
 export async function POST(req: Request) {
     try {
             const body = await req.json();
-            //suponemos que buyer nos manda usuarioId
-            const {id_orden,id_comprador,id_vendedor,
+            const {id_orden,id_pedido,id_comprador,id_vendedor,
                     direccion_entrega,items,servicio_elegido,usuarioId} = body;
-            if (!id_orden || !id_comprador || !id_vendedor || !direccion_entrega || !items || !servicio_elegido) {
+            if (!id_orden || !id_pedido || !id_comprador || !id_vendedor || !direccion_entrega || !items || !servicio_elegido) {
                 return NextResponse.json(
                     { estado: "error", mensaje: "Falta ingresar mas datos" },
                     { status: 400 }
@@ -79,9 +78,36 @@ export async function POST(req: Request) {
                     new Date(),
                 ]
             );
+           await db.query(
+                `
+                INSERT INTO "PreparacionPedido"
+                  (
+                    "trackingId",
+                    "id_orden",
+                    "id_pedido",
+                    "tipo_estado_preparacion"
+                )
+                VALUES ($1,$2,$3,$4)
+                `,
+                [
+                    
+                    trackingId,
+                    id_orden,
+                    id_pedido,
+                    "PENDIENTE",
+                ]
+                );
+
+            return NextResponse.json(
+                {
+                    estado: "success",
+                    trackingId,
+                },
+                { status: 201 }
+                );
     }
     catch (error) {
-    console.error("Error obteniendo cotizaciones mocks:", error);
+    console.error("Error", error);
     return NextResponse.json(
       { estado: "error", mensaje: "Error interno del servidor" },
       { status: 500 }
