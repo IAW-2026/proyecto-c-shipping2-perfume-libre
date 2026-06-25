@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./EnviosViewer.module.css";
 import Link from "next/link";
 /*Info de un envio*/
@@ -29,39 +29,74 @@ const ESTADOS = [
   "CREADO",
   "PREPARANDO",
   "RETIRADO",
-  "EN_TRANSITO",
   "ENTREGADO",
   "NO_ENTREGADO",
   "CANCELADO",
 ];
 
 export default function EnviosViewer({ envios,  showUsuarioId = false }: EnviosViewerProps) {
-//Envio seleccionado
- const [selected, setSelected] = useState(0);
-//Filtrado de envios con usestate y memo para evitar recakculos
- const [estadoFiltro, setEstadoFiltro] =
-    useState("TODOS");
+  const [currentEnvios, setCurrentEnvios] = useState(envios);
+  const [nuevosCount, setNuevosCount] = useState(0);
+  const vistos = useRef(new Set(envios.map((e) => e.trackingId)));
+  const [selected, setSelected] = useState(0);
+  const [estadoFiltro, setEstadoFiltro] = useState("TODOS");
 
   const filteredEnvios = useMemo(() => {
     if (estadoFiltro === "TODOS") {
-      return envios;
+      return currentEnvios;
     }
 
-    return envios.filter(
+    return currentEnvios.filter(
       (envio) => envio.estado_actual === estadoFiltro
     );
-  }, [envios, estadoFiltro]);
-//Se ordena los envios por trackingId de forma descendinte 
-// para ir con lods mas recientes primero
- const sortedEnvios = [...filteredEnvios].sort((a, b) =>
+  }, [currentEnvios, estadoFiltro]);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch("/api/envios");
+        if (!response.ok) {
+          return;
+        }
+
+        const nuevosEnvios: Envio[] = await response.json();
+        const nuevos = nuevosEnvios.filter(
+          (e) => !vistos.current.has(e.trackingId)
+        );
+
+        if (nuevos.length > 0) {
+          nuevos.forEach((envio) => vistos.current.add(envio.trackingId));
+          setCurrentEnvios((prev) => {
+            const merged = [...nuevos, ...prev];
+            const unique = Array.from(
+              new Map(merged.map((envio) => [envio.trackingId, envio])).values()
+            );
+            return unique;
+          });
+          setNuevosCount((prevCount) => prevCount + nuevos.length);
+        }
+      } catch (error) {
+        console.error("Error fetching nuevos envios:", error);
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const sortedEnvios = [...filteredEnvios].sort((a, b) =>
     b.trackingId.localeCompare(a.trackingId)
   );
-//Se retorna el envio seleccionadp
+
   const currentEnvio = sortedEnvios[selected];
 
   return (
     <div className={styles.root}>
       <div className={styles.sidebar}>
+        {nuevosCount > 0 && (
+          <div className={styles.notification}>
+            Tienes {nuevosCount} envíos nuevos.
+          </div>
+        )}
         <h2 className={styles.title}>Historial de envios:</h2>
          <select
           className={styles.filter}

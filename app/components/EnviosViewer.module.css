@@ -9,6 +9,15 @@
   border-right: 1px solid #f2efd7;
 }
 
+.notification {
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.85rem;
+  background: #ffe8d6;
+  color: #3d2c16;
+  font-weight: 700;
+}
+
 .title {
   margin-bottom: 1rem;
   font-size: 1.25rem;
