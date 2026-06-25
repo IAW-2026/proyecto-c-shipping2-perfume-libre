@@ -59,35 +59,6 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
-
-    // Llamada a Buyer
-    const buyerResponse = await fetch(
-      `${process.env.BUYER_URL}/api/notificaciones`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type":
-            "application/json",
-        },
-        body: JSON.stringify({
-          trackingId,
-          fecha_entrega,
-          estado,
-        }),
-      }
-    );
-
-    if (!buyerResponse.ok) {
-      return NextResponse.json(
-        {
-          estado: "error",
-          mensaje:
-            "Buyer no confirmó la recepción",
-        },
-        { status: 502 }
-      );
-    }
-
     return NextResponse.json({
       estado: "success",
       mensaje:

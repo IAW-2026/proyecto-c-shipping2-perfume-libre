@@ -7,18 +7,37 @@ export async function POST(
     params,
   }: {
     params: Promise<{
-      id_vendedor: string;
       id_orden: string;
     }>;
   }
 ) {
-  const { id_vendedor, id_orden } = await params;
-  const body = await req.json();
-  const { trackingId } = body;
-
   try {
+    const { id_orden } = await params;
+    console.log("id_orden recibido:", id_orden);
+    // Buscar preparacion y tracking asociado
+    const preparacionResult = await db.query(
+      `
+      SELECT *
+      FROM "PreparacionPedido"
+      WHERE "id_orden" = $1
+      `,
+      [id_orden]
+    );
 
-    // Obtener datos del envIO
+    if (preparacionResult.rows.length === 0) {
+      return NextResponse.json(
+        {
+          estado: "error",
+          mensaje: "Pedido no encontrado",
+        },
+        { status: 404 }
+      );
+    }
+
+    const trackingId =
+      preparacionResult.rows[0].trackingId;
+
+    // Obtener envío
     const envioResult = await db.query(
       `
       SELECT *
@@ -32,40 +51,44 @@ export async function POST(
       return NextResponse.json(
         {
           estado: "error",
-          mensaje: "Envio no encontrado",
+          mensaje: "Envío no encontrado",
         },
         { status: 404 }
       );
     }
+
     const envio = envioResult.rows[0];
 
-    if (envio.estado_actual !== "CREADO") {
+    if (envio.estado_actual !== "RETIRADO") {
       return NextResponse.json(
-    {
-      estado: "error",
-      mensaje:
-        "Solo pueden enviarse a preparación los envios recientemente CREADOs",
-    },
-    { status: 400 }
-  );
-}
-    const sellerData = {
-  estado: "EN_PREPARACION",
-};
-    // Actualizar tabla Envio
+        {
+          estado: "error",
+          mensaje:
+            "Solo pueden entregarse envíos RETIRADOS",
+        },
+        { status: 400 }
+      );
+    }
+
+    const fechaEntrega = new Date();
+
+    // Actualizar envío
     await db.query(
       `
       UPDATE "Envio"
-      SET "estado_actual" = $1
-      WHERE "trackingId" = $2
+      SET
+        "estado_actual" = $1,
+        "fecha_entrega" = $2
+      WHERE "trackingId" = $3
       `,
       [
-        "PREPARANDO",
+        "ENTREGADO",
+        fechaEntrega,
         trackingId,
       ]
     );
 
-    // Registrar nuevo estado
+    // Registrar estado
     await db.query(
       `
       INSERT INTO "EstadoEnvio"
@@ -80,26 +103,17 @@ export async function POST(
       [
         trackingId,
         envio.usuarioId,
-        "PREPARANDO",
-        new Date(),
+        "ENTREGADO",
+        fechaEntrega,
       ]
-    );
-
-    // Actualizar PreparacionPedido
-    await db.query(
-      `
-      UPDATE "PreparacionPedido"
-      SET "tipo_estado_preparacion" = $1
-      WHERE "id_orden" = $2
-      `,
-      ["EN_PREPARACION", id_orden]
     );
 
     return NextResponse.json({
       estado: "success",
+      id_orden,
       trackingId,
-      nuevo_estado:
-        "PREPARANDO",
+      fecha_entrega:
+        fechaEntrega.toISOString(),
     });
   } catch (error) {
     console.error(error);
