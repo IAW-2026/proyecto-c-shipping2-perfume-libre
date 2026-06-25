@@ -3,16 +3,6 @@ import { db } from "@/lib/db";
 
 export async function POST(req: Request) {
     try {
-      if (!req.headers.get("content-type")?.includes("application/json")) {
-        return NextResponse.json(
-                {
-                estado: "error",
-                mensaje:
-                    "Content-Type inválido",
-                },
-                { status: 415 }
-        );
-    }
             const body = await req.json();
             const {id_orden,id_pedido,id_comprador,id_vendedor,
                     direccion_entrega,items,servicio_elegido,usuarioId} = body;

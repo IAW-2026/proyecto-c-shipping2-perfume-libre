@@ -1,12 +1,20 @@
-.container {
-  border: 2px solid #5a5a5a;
-  border-radius:0.8rem;
-  padding: 1.5rem;
-  background-color: #f2efd7;
+.publicLayout {
   display: flex;
-  flex-direction: column;
-  width: auto;
-  gap: 0.8rem;
-    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
-
+  min-height: 100vh;
 }
+
+.container {
+  margin-left: 250px;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f2efd7;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-left: 0;
+    padding: 1.5rem;
+  }
+}
+

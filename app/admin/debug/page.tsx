@@ -36,7 +36,7 @@ async function cotizarEnvio() {
   }
 
   const response = await fetch(
-    "/api/shipping/cotizar",
+    "/api/admin/shipping/cotizar",
     {
       method: "POST",
       headers: {
@@ -65,7 +65,7 @@ async function cotizarEnvio() {
 }
   async function crearEnvio() {
   const response = await fetch(
-    "/api/shipping/ordenes",
+    "/api/admin/shipping/ordenes",
     {
       method: "POST",
       headers: {
@@ -125,7 +125,7 @@ async function prepararPedido() {
   }
 
   const response = await fetch(
-    `/api/seller/201/ordenes/${idOrden}/preparar`,
+    `/api/admin/seller/201/ordenes/${idOrden}/preparar`,
     {
       method: "POST",
       headers: {
@@ -160,7 +160,7 @@ async function retirarPedido() {
   }
 
   const response = await fetch(
-    `/api/shipping/ordenes/${idOrden}/retirado`,
+    `/api/admin/shipping/ordenes/${idOrden}/retirado`,
     {
       method: "POST",
     }
@@ -191,7 +191,7 @@ console.log(
   }
 console.log("idOrden =", idOrden);
   const response = await fetch(
-    `/api/debug/entregar/${idOrden}`,
+    `/api/admin/debug/entregar/${idOrden}`,
     {
       method: "POST",
     }
@@ -218,7 +218,7 @@ async function noEntregadoPedido() {
   }
 
   const response = await fetch(
-    `/api/debug/no-entregado/${idOrden}`,
+    `/api/admin/debug/no-entregado/${idOrden}`,
     {
       method: "POST",
     }
@@ -245,7 +245,7 @@ async function notificarBuyer() {
   }
 
   const response = await fetch(
-    "/api/notificaciones",
+    "/api/admin/notificaciones",
     {
       method: "POST",
       headers: {
@@ -282,7 +282,7 @@ async function cancelarEnvio() {
   }
 
   const response = await fetch(
-    `/api/debug/cancelar/${idOrden}`,
+    `/api/admin/debug/cancelar/${idOrden}`,
     {
       method: "POST",
     }
@@ -309,7 +309,7 @@ async function eliminarEnvio() {
   }
 
   const response = await fetch(
-    `/api/debug/envios/${trackingId}`,
+    `/api/admin/debug/envios/${trackingId}`,
     {
       method: "DELETE",
     }
