@@ -31,3 +31,136 @@
   transform: translateY(0);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
+
+.trackingInfo {
+  margin-bottom: 1.5rem;
+  padding: 1.2rem 1.25rem;
+  border-radius: 0.8rem;
+  background: #f2efd7;
+  border: 1px solid #dbdda6;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  font-size: 1rem;
+}
+
+.trackingLabel {
+  font-weight: 700;
+}
+
+.trackingValue {
+  color: #3b5a40;
+}
+
+.trackingHeader {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.trackingSteps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: #f7f5e8;
+  border: 1px solid #e3daad;
+  color: #5a5a5a;
+}
+
+.stepActive {
+  background: #dbdda6;
+  border-color: #b6c174;
+  color: #2f4f36;
+}
+
+.stepIcon {
+  width: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.inputCard {
+  margin-bottom: 1.5rem;
+  padding: 1.2rem 1.25rem;
+  border-radius: 0.8rem;
+  background: #f7f5e8;
+  border: 1px solid #e3daad;
+  font-size: 1rem;
+}
+
+.inputCard h2 {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+
+.inputGrid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #d1c9a4;
+  border-radius: 0.75rem;
+  background: #fffdf2;
+  color: #2f4f36;
+}
+
+.inputField:focus {
+  outline: 2px solid #b6c174;
+}
+
+.inputHelp {
+  margin: 0.75rem 0 0;
+  color: #5a5a5a;
+  font-size: 0.95rem;
+}
+
+.cotizarButton {
+  margin-top: 1rem;
+  width: auto;
+  min-width: 180px;
+}
+
+.quoteResult {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  background: #eef5dc;
+  border: 1px solid #d1d7ae;
+  color: #3b5a40;
+}
+
+.quoteResult ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.quoteResult li {
+  margin-bottom: 0.3rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
