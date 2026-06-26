@@ -21,7 +21,7 @@ export interface Envio {
 }
 
 type EnviosViewerProps = {
-  envios: Envio[];  showUsuarioId?: boolean;
+  envios: Envio[];  showUsuarioId?: boolean;  onSelectedChange?: (envio: Envio | null) => void;
 };
 //Estados para filtrar un envio
 const ESTADOS = [
@@ -34,7 +34,7 @@ const ESTADOS = [
   "CANCELADO",
 ];
 
-export default function EnviosViewer({ envios,  showUsuarioId = false }: EnviosViewerProps) {
+export default function EnviosViewer({ envios,  showUsuarioId = false, onSelectedChange }: EnviosViewerProps) {
   const [currentEnvios, setCurrentEnvios] = useState(envios);
   const [nuevosCount, setNuevosCount] = useState(0);
   const vistos = useRef(new Set(envios.map((e) => e.trackingId)));
@@ -88,6 +88,12 @@ export default function EnviosViewer({ envios,  showUsuarioId = false }: EnviosV
   );
 
   const currentEnvio = sortedEnvios[selected];
+
+  useEffect(() => {
+    if (onSelectedChange) {
+      onSelectedChange(currentEnvio);
+    }
+  }, [currentEnvio, onSelectedChange]);
 
   return (
     <div className={styles.root}>

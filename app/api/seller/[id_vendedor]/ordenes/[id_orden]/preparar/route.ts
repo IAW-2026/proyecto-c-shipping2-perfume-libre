@@ -49,9 +49,38 @@ export async function POST(
     { status: 400 }
   );
 }
-    const sellerData = {
-  estado: "EN_PREPARACION",
-};
+const sellerResponse = await fetch(
+  `${process.env.SELLER_URL}/api/seller/${id_vendedor}/ordenes/${id_orden}/preparar`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id_orden,
+      trackingId,
+    }),
+  }
+);
+if (!sellerResponse.ok) {
+  return NextResponse.json(
+    {
+      estado: "error",
+      mensaje: "Seller rechazó la preparación",
+    },
+    { status: 502 }
+  );
+}
+const sellerData = await sellerResponse.json();
+if (sellerData.estado !== "EN_PREPARACION") {
+  return NextResponse.json(
+    {
+      estado: "error",
+      mensaje: "Seller no aceptó preparar el pedido",
+    },
+    { status: 400 }
+  );
+}
     // Actualizar tabla Envio
     await db.query(
       `
