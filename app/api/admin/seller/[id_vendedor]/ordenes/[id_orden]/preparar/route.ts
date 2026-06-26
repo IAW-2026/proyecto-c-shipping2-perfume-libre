@@ -12,11 +12,12 @@ export async function POST(
     }>;
   }
 ) {
+
+
+  try {
   const { id_vendedor, id_orden } = await params;
   const body = await req.json();
   const { trackingId } = body;
-
-  try {
 
     // Obtener datos del envIO
     const envioResult = await db.query(

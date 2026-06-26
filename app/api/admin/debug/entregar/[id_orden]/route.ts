@@ -51,7 +51,7 @@ export async function POST(
       return NextResponse.json(
         {
           estado: "error",
-          mensaje: "Envío no encontrado",
+          mensaje: "Envio no encontrado",
         },
         { status: 404 }
       );
@@ -64,7 +64,7 @@ export async function POST(
         {
           estado: "error",
           mensaje:
-            "Solo pueden entregarse envíos RETIRADOS",
+            "Solo pueden entregarse envios RETIRADOS",
         },
         { status: 400 }
       );

@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           estado: "error",
-          mensaje: "Envío no encontrado",
+          mensaje: "Envio no encontrado",
         },
         { status: 404 }
       );
@@ -59,11 +59,39 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
-    return NextResponse.json({
-      estado: "success",
-      mensaje:
+    const buyerResponse = await fetch(
+  `${process.env.BUYER_URL}/api/notificaciones`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      trackingId,
+      fecha_entrega,
+      estado,
+    }),
+  }
+);
+
+if (!buyerResponse.ok) {
+  return NextResponse.json(
+    {
+      estado: "error",
+      mensaje: "Buyer no confirmó la notificación",
+    },
+    { status: 502 }
+  );
+}
+
+const buyerData = await buyerResponse.json();
+
+return NextResponse.json({
+  estado: "success",
+  mensaje:
         "Notificación enviada correctamente",
-    });
+  buyer: buyerData,
+});
   } catch (error) {
     console.error(error);
 

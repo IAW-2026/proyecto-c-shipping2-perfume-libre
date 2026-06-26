@@ -100,7 +100,7 @@ export default function EnviosViewer({ envios,  showUsuarioId = false, onSelecte
       <div className={styles.sidebar}>
         {nuevosCount > 0 && (
           <div className={styles.notification}>
-            Tienes {nuevosCount} envíos nuevos.
+            Tienes {nuevosCount} envios nuevos.
           </div>
         )}
         <h2 className={styles.title}>Historial de envios:</h2>

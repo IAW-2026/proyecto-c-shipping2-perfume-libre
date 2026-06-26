@@ -119,7 +119,7 @@ async function prepararPedido() {
 
   if (!idOrden || !trackingId) {
     alert(
-      "Primero debe crear un envío"
+      "Primero crear un envio"
     );
     return;
   }
@@ -154,7 +154,7 @@ async function retirarPedido() {
 
   if (!idOrden) {
     alert(
-      "Primero debe crear y preparar un envío"
+      "Primero crear y preparar un envio"
     );
     return;
   }
@@ -239,7 +239,7 @@ async function notificarBuyer() {
 
   if (!trackingId) {
     alert(
-      "Primero debe crear un envío"
+      "Primero crear un envio"
     );
     return;
   }
@@ -276,7 +276,7 @@ async function notificarBuyer() {
 async function cancelarEnvio() {
   if (!idOrden) {
     alert(
-      "Primero debe crear un envío"
+      "Primero debe crear un envio"
     );
     return;
   }
@@ -303,7 +303,7 @@ async function eliminarEnvio() {
 
   if (!trackingId) {
     alert(
-      "No hay envío para eliminar"
+      "No hay envio para eliminar"
     );
     return;
   }
@@ -321,7 +321,7 @@ async function eliminarEnvio() {
 
   if (response.ok) {
     alert(
-      `Envío ${trackingId} eliminado`
+      `Envio ${trackingId} eliminado`
     );
     setCanceled(false);
     setNotEntregado(false);
@@ -367,7 +367,7 @@ async function eliminarEnvio() {
             Cotizar envio
           </button>
           <p className={debugStyles.inputHelp}>
-            Estos valores se usan solo para cotizar. El envío se crea con los siguientes valores fijos:
+            Estos valores se usan solo para cotizar. El envio se crea con los siguientes valores fijos:
             dirección de entrega Calle Falsa 123,
             código postal 8000,
             usuarioId 302,
@@ -392,7 +392,7 @@ async function eliminarEnvio() {
         <div className={debugStyles.trackingInfo}>
           <div className={debugStyles.trackingHeader}>
             <span className={debugStyles.trackingLabel}>Tracking ID actual:</span>
-            <span className={debugStyles.trackingValue}>{trackingId || "Vacío"}</span>
+            <span className={debugStyles.trackingValue}>{trackingId || "Vacio"}</span>
           </div>
           <div className={debugStyles.trackingSteps}>
             <div className={`${debugStyles.step} ${created ? debugStyles.stepActive : ""}`}>
@@ -445,13 +445,13 @@ async function eliminarEnvio() {
             Notificar buyer
           </button>
           <button className={`${debugStyles.button} ${enviosStyles.listItem}`} onClick={cancelarEnvio} disabled={!canCancel}>
-            Cancelar envío
+            Cancelar envio
           </button>
           <button
             className={`${debugStyles.button} ${enviosStyles.listItem}`}
             onClick={eliminarEnvio}
             disabled={!canDelete}>
-            Eliminar envío
+            Eliminar envio
           </button>
         </div>
       </main>

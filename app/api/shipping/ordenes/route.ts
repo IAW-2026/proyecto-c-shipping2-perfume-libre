@@ -8,7 +8,7 @@ export async function POST(req: Request) {
                 {
                 estado: "error",
                 mensaje:
-                    "Content-Type inválido",
+                    "Content-Type invalido",
                 },
                 { status: 415 }
         );

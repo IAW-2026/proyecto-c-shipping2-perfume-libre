@@ -27,7 +27,7 @@ export async function POST(
       return NextResponse.json(
         {
           estado: "error",
-          mensaje: "Envío no encontrado",
+          mensaje: "Envio no encontrado",
         },
         { status: 404 }
       );
@@ -39,7 +39,7 @@ export async function POST(
       return NextResponse.json(
         {
           estado: "error",
-          mensaje: "El envío ya está cancelado",
+          mensaje: "El envio ya está cancelado",
         },
         { status: 400 }
       );

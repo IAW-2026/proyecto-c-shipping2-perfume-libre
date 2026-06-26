@@ -11,13 +11,13 @@ export async function POST(
       id_orden: string;
     }>;
   }
-) {
-  const { id_vendedor, id_orden } = await params;
-  const body = await req.json();
-  const { trackingId } = body;
+) {console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
   try {
-
+    const { id_vendedor, id_orden } = await params;
+  const body = await req.json();
+  const { trackingId } = body;
+console.log("BBBBBBBBBBBBBBBBBBBBB");
     // Obtener datos del envIO
     const envioResult = await db.query(
       `
@@ -44,11 +44,12 @@ export async function POST(
     {
       estado: "error",
       mensaje:
-        "Solo pueden enviarse a preparación los envios recientemente CREADOs",
+        "Solo pueden enviarse a preparacion los envios recientemente CREADOs",
     },
     { status: 400 }
   );
 }
+console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCC");
 const sellerResponse = await fetch(
   `${process.env.SELLER_URL}/api/seller/${id_vendedor}/ordenes/${id_orden}/preparar`,
   {
@@ -66,11 +67,12 @@ if (!sellerResponse.ok) {
   return NextResponse.json(
     {
       estado: "error",
-      mensaje: "Seller rechazó la preparación",
+      mensaje: "Seller rechazo la preparación",
     },
     { status: 502 }
   );
 }
+console.log("DDDDDDDDDDDDDDDDDDDDD");
 const sellerData = await sellerResponse.json();
 if (sellerData.estado !== "EN_PREPARACION") {
   return NextResponse.json(
@@ -81,6 +83,7 @@ if (sellerData.estado !== "EN_PREPARACION") {
     { status: 400 }
   );
 }
+console.log("EEEEEEEEEEEEEEEEEEE");
     // Actualizar tabla Envio
     await db.query(
       `
@@ -93,7 +96,7 @@ if (sellerData.estado !== "EN_PREPARACION") {
         trackingId,
       ]
     );
-
+console.log("FFFFFFFFFFFFFFFFFFFFFFFFF");
     // Registrar nuevo estado
     await db.query(
       `
@@ -113,7 +116,7 @@ if (sellerData.estado !== "EN_PREPARACION") {
         new Date(),
       ]
     );
-
+console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGG");
     // Actualizar PreparacionPedido
     await db.query(
       `
@@ -123,6 +126,7 @@ if (sellerData.estado !== "EN_PREPARACION") {
       `,
       ["EN_PREPARACION", id_orden]
     );
+    console.log("HHHHHHHHHHHHHHHHHHHHHHHH");
 
     return NextResponse.json({
       estado: "success",
@@ -134,12 +138,11 @@ if (sellerData.estado !== "EN_PREPARACION") {
     console.error(error);
 
     return NextResponse.json(
-      {
-        estado: "error",
-        mensaje:
-          "Error interno del servidor",
-      },
-      { status: 500 }
-    );
+    {
+      estado: "error",
+      mensaje: "Error interno",
+    },
+    { status: 500 }
+  );
   }
 }

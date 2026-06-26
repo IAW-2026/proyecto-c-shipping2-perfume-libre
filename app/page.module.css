@@ -14,6 +14,35 @@
   align-items: flex-start;
 }
 
+.actionButton {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 0.8rem;
+  border: none;
+  background: #f2efd7;
+  color: #000000;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 0.85rem;
+}
+
+.actionButton:hover:not(:disabled) {
+  background-color: #dbdda6;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.actionButton:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  background: #e6e1d5;
+  box-shadow: none;
+}
+
 .sidebar {
   width: 260px;
   min-width: 260px;
