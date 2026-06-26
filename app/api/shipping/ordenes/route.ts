@@ -52,10 +52,11 @@ export async function POST(req: Request) {
                 "operador",
                 "precio",
                 "tipo_servicio",
-                "demora_dias"
+                "demora_dias",
+                "items"
             )
             VALUES (
-                $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11
+                $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12
             )
             `,[
                 trackingId,
@@ -69,6 +70,7 @@ export async function POST(req: Request) {
                 servicio_elegido.precio,
                 servicio_elegido.tipo_servicio,
                 servicio_elegido.demora_dias,
+                JSON.stringify(items),
             ]
             );
             await db.query(

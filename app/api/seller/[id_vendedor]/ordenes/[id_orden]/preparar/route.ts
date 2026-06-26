@@ -50,37 +50,41 @@ console.log("BBBBBBBBBBBBBBBBBBBBB");
   );
 }
 console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCC");
+// Obtener productos guardados en el JSONB
+const items =
+  typeof envio.items === "string"
+    ? JSON.parse(envio.items)
+    : envio.items;
+
+// Seller actualmente solo espera un arreglo de ids
+const productos_id = items.map(
+  (item: any) => Number(item.productoId)
+);
+
 const sellerResponse = await fetch(
-  `${process.env.SELLER_URL}/api/seller/${id_vendedor}/ordenes/${id_orden}/preparar`,
+  `${process.env.SELLER_URL}/api/seller/ordenes/preparar`,
   {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      api_key: process.env.SELLER_API_KEY!,
     },
     body: JSON.stringify({
-      id_orden,
-      trackingId,
+      id_vendedor,
+      id_orden: Number(id_orden),
+      productos_id,
     }),
   }
 );
 if (!sellerResponse.ok) {
+  const error = await sellerResponse.json();
+
   return NextResponse.json(
     {
       estado: "error",
-      mensaje: "Seller rechazo la preparación",
+      mensaje: error.error ?? "Seller rechazó la preparación",
     },
-    { status: 502 }
-  );
-}
-console.log("DDDDDDDDDDDDDDDDDDDDD");
-const sellerData = await sellerResponse.json();
-if (sellerData.estado !== "EN_PREPARACION") {
-  return NextResponse.json(
-    {
-      estado: "error",
-      mensaje: "Seller no aceptó preparar el pedido",
-    },
-    { status: 400 }
+    { status: sellerResponse.status }
   );
 }
 console.log("EEEEEEEEEEEEEEEEEEE");
