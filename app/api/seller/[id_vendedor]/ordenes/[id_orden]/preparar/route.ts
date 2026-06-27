@@ -60,7 +60,14 @@ const items =
 const productos_id = items.map(
   (item: any) => Number(item.productoId)
 );
-
+console.log("URL:", process.env.SELLER_URL);
+console.log("API KEY:", process.env.SELLER_API_KEY);
+console.log({
+  id_vendedor,
+  id_orden,
+  productos_id,
+});
+const sellerOrderId = Number(id_orden.replace("ORD-", ""));
 const sellerResponse = await fetch(
   `${process.env.SELLER_URL}/api/seller/ordenes/preparar`,
   {
@@ -71,7 +78,7 @@ const sellerResponse = await fetch(
     },
     body: JSON.stringify({
       id_vendedor,
-      id_orden: Number(id_orden),
+      id_orden: sellerOrderId,
       productos_id,
     }),
   }
