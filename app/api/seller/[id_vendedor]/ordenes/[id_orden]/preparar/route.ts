@@ -11,13 +11,11 @@ export async function POST(
       id_orden: string;
     }>;
   }
-) {console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
+) {
   try {
     const { id_vendedor, id_orden } = await params;
   const body = await req.json();
   const { trackingId } = body;
-console.log("BBBBBBBBBBBBBBBBBBBBB");
     // Obtener datos del envIO
     const envioResult = await db.query(
       `
@@ -49,7 +47,6 @@ console.log("BBBBBBBBBBBBBBBBBBBBB");
     { status: 400 }
   );
 }
-console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCC");
 // Obtener productos guardados en el JSONB
 const items =
   typeof envio.items === "string"
@@ -94,7 +91,7 @@ if (!sellerResponse.ok) {
     { status: sellerResponse.status }
   );
 }
-console.log("EEEEEEEEEEEEEEEEEEE");
+
     // Actualizar tabla Envio
     await db.query(
       `
@@ -107,7 +104,7 @@ console.log("EEEEEEEEEEEEEEEEEEE");
         trackingId,
       ]
     );
-console.log("FFFFFFFFFFFFFFFFFFFFFFFFF");
+
     // Registrar nuevo estado
     await db.query(
       `
@@ -127,7 +124,7 @@ console.log("FFFFFFFFFFFFFFFFFFFFFFFFF");
         new Date(),
       ]
     );
-console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGG");
+
     // Actualizar PreparacionPedido
     await db.query(
       `
@@ -137,7 +134,6 @@ console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGG");
       `,
       ["EN_PREPARACION", id_orden]
     );
-    console.log("HHHHHHHHHHHHHHHHHHHHHHHH");
 
     return NextResponse.json({
       estado: "success",

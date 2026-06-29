@@ -70,7 +70,7 @@ export async function POST(
 
     const fechaIntento = new Date();
 
-    // Actualizar envío
+    // Actualizar envoo
     await db.query(
       `
       UPDATE "Envio"

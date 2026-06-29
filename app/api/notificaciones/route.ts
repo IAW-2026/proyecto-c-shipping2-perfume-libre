@@ -54,22 +54,24 @@ export async function POST(req: Request) {
         {
           estado: "error",
           mensaje:
-            "El envío aún no fue entregado",
+            "El envío aun no fue entregado",
         },
         { status: 400 }
       );
     }
-    const buyerResponse = await fetch(
+    console.log(trackingId);
+   const buyerResponse = await fetch(
   `${process.env.BUYER_URL}/api/notificaciones`,
   {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      api_key: process.env.BUYER_API_KEY!,
     },
     body: JSON.stringify({
-      trackingId,
-      fecha_entrega,
+      tracking_id: trackingId,
       estado,
+      fecha: fecha_entrega,
     }),
   }
 );
@@ -78,7 +80,7 @@ if (!buyerResponse.ok) {
   return NextResponse.json(
     {
       estado: "error",
-      mensaje: "Buyer no confirmó la notificación",
+      mensaje: "Buyer no confirmó la notificacion",
     },
     { status: 502 }
   );
@@ -86,10 +88,12 @@ if (!buyerResponse.ok) {
 
 const buyerData = await buyerResponse.json();
 
+console.log("Buyer status:", buyerResponse.status);
+console.log("Buyer body:", buyerData);
 return NextResponse.json({
   estado: "success",
   mensaje:
-        "Notificación enviada correctamente",
+        "Notificacion enviada correctamente",
   buyer: buyerData,
 });
   } catch (error) {
