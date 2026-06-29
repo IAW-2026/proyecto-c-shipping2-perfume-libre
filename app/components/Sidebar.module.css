@@ -1,0 +1,143 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #76c3bb;
+  color: #ffffff;
+  padding-top: 60px;
+  transition: transform 0.3s ease, width 0.3s ease;
+  overflow-y: auto;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.toggleButton {
+  position: fixed;
+  top: 0.5rem;
+  left: 20rem;
+  z-index: 101;
+  background-color: #76c3bb;
+  color: #ffffff;
+  border: 2px solid #76c3bb;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.toggleButton:hover {
+  background-color: #5a9d94;
+  border-color: #ffffff;
+}
+
+.sidebarHeader {
+  padding: 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 1rem;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.nav {
+  flex: 1;
+  padding: 0 0.5rem;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navList li {
+  margin-bottom: 0.5rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-left-color: #ffffff;
+  padding-left: calc(1rem - 3px);
+}
+
+.navLink:active {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-left-color: #ffffff;
+}
+
+.sidebarFooter {
+  padding: 1rem 0.5rem 1.5rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  margin-top: auto;
+}
+
+.logoutLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.logoutLink:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-left-color: #ffffff;
+  padding-left: calc(1rem - 3px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .navLink {
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+  }
+
+  .toggleButton {
+    top: 1rem;
+    left: 1rem;
+  }
+}

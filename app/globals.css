@@ -1,0 +1,101 @@
+html,body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family:system-ui, sans-serif;
+  background:
+      linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.65) 20%,
+      rgba(0, 0, 0, 0.35) 50%,
+      rgba(0, 0, 0, 0.10) 80%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    url("/background.png");
+
+  background-size: 100%;
+  background-position: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  background-color: #76c3bb;
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+  
+}
+
+.perfumeLogo {
+position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 25vw;      
+  max-width: 300px; 
+  min-width: 80px;
+  height: auto;
+}
+
+.headerTitle {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .headerTitle {
+    display: none;
+  }
+}
+
+.headerActions {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.authButton {
+  background-color: #f8bfbd;
+  color: black;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 1000;
+  cursor: pointer;
+}
+
+.authButton:hover {
+  opacity: 0.9;
+  background-color: #ffa09d;
+}
+
+.authPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: calc(100vh - 120px);
+}
+
+.appShell {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 2rem;
+  min-height: 0;
+  overflow: auto;
+  transition: all 0.7s ease;
+}

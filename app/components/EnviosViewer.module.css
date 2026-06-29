@@ -1,0 +1,152 @@
+.root {
+  display: flex;
+  min-height: 100%;
+}
+
+.sidebar {
+  flex: 1;
+  padding: 2rem;
+  border-right: 1px solid #f2efd7;
+}
+
+.notification {
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.85rem;
+  background: #ffe8d6;
+  color: #3d2c16;
+  font-weight: 700;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.listItem {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 0.8rem;
+  background: #f2efd7;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.listItem:hover {
+  background-color: #dbdda6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.activeItem {
+  background-color: #ffeeee;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(126, 151, 133, 0.5);
+}
+
+.details {
+  flex: 1;
+  padding: 2rem;
+}
+
+.card {
+  border: 2px solid #5a5a5a;
+  border-radius:0.8rem;
+  padding: 1.5rem;
+  background-color: #f2efd7;
+  display: flex;
+  flex-direction: column;
+  width: min(600px, 90vw);
+  gap: 0.8rem;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.filter {
+  font-weight: 700;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.timeline {
+  padding: 20px;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 20px;
+}
+
+.timelineMarker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #5a5a5a;
+  flex-shrink: 0;
+}
+.lastCircle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #76c3bb;
+  flex-shrink: 0;
+}
+.adminTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+.line {
+  width: 3px;
+  height: 70px;
+  background: #5a5a5a;
+}
+
+.timelineContent {
+  padding-bottom: 40px;
+}
+
+.timelineContent h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.timelineContent p {
+  margin-top: 8px;
+}
+
