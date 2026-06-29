@@ -16,7 +16,7 @@ export async function POST(
     const { id_vendedor, id_orden } = await params;
   const body = await req.json();
   const { trackingId } = body;
-    // Obtener datos del envIO
+    // Obtener datos del envIO 1
     const envioResult = await db.query(
       `
       SELECT *
